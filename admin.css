@@ -1,0 +1,184 @@
+/* Basic reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Top navigation */
+  .topnav {
+    background-color: #006ba6;
+    overflow: hidden;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .company-name {
+    margin-left: 20px;
+    color: #fff;
+  }
+  
+  .user-access {
+    margin-right: 20px;
+  }
+  
+  .user-access .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 60px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .user-access .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .user-access .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .show {
+    display: block;
+  }
+  
+  /* Side navigation */
+  .sidenav {
+    margin-top: 50px;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: aliceblue;
+    overflow-x: hidden;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #3d3a3a;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: black;
+  }
+  
+  /* Content */
+  .content {
+    margin-left: 200px;
+    padding: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: scroll;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Search */
+  .search-container {
+    margin-bottom: 20px;
+  }
+  
+  .search-container input[type=text] {
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 17px;
+    border: none;
+  }
+  
+  .search-container input[type=text]::placeholder {
+    color: #aaa;
+  }
+  #userButton img{
+    height: 40%;
+    width: 30%;
+}
+#userButton #sel{
+    background-color: #006ba6;
+
+    height: 40%;
+    border: none;
+    color: white;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+  #userButton {
+    display: flex;
+    width: 130px;
+    height: 100%;
+  }
+  #userButton button{
+    display: none;
+  }
+  table{
+    width: 40%;
+  }
+  table,td,th{
+    padding: 5px;
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  
+  .classform{
+    margin-bottom: 30px;
+  }
+  /* Responsive */
+  @media screen and (max-width: 600px) {
+    table{
+    }
+    .sidenav {
+      width: 0;
+    }
+    .content {
+      margin-left: 0;
+    }
+    .topnav {
+      height: 100px;
+    }
+    .company-name h1{
+        font-size: 0.7rem;
+    }
+    #userButton button{
+        display: block;
+    }
+    .company-name {
+      margin-left: 10px;
+      font-size: 16px;
+    }
+    .user-access {
+      margin-right: 10px;
+    }
+    .classform{
+        margin-bottom: 30px;
+    }
+  }
