@@ -1,5 +1,32 @@
+<?php 
+    include('testconnection.php');
+    if(isset($_POST['promote'])){
+        $sql="SELECT * FROM studentdetails  ";
+        $stmt=$conns->prepare($sql);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+        foreach($rows as $row){
+            if($row->semester<6 && $row->semester>0){
+                $new=  $row->semester-1;
+            }
+            else{
+                $new= 6;
+            }
+        }
+        $sqlz="UPDATE studentdetails SET semester=:new ";
+        $stmts=$conns->prepare($sqlz);
+        $stmts->execute(['new'=>$new]);
+    }
+
+
+
+
+?>
+
+
+
 <?php
-    session_start();
+
     include('testconnection.php');
     if(isset($_POST['register'])){
 
@@ -13,6 +40,7 @@
             $query->execute();
             $result=$query->fetch(PDO::FETCH_OBJ);
                     $teacher=$result->teacher;
+                    echo "Teacher: ".$teacher;
             $status="pending";
             // $unitname="maths";
             // adm	email	password	cpassword	address	phone	satelite	level	 
@@ -67,18 +95,9 @@
             margin-left: 250px;
             padding: 20px;
         }
-        .company-name button{
-  display: none;
-}
-.navy{
-  display: none;
-}
 
         /* Responsive layout - when the screen is less than 600px wide, make the side navigation menu stack on top of each other instead of next to each other */
         @media screen and (max-width: 600px) {
-            .company-name h1{
-                font-size: 1rem;
-            }
             .sidenav {
                 width: 100%;
                 height: auto;
@@ -111,6 +130,7 @@ table{
 
 <body>
     <div class="sidenav" style="">
+        <a href="Adminnav.php">Dashboard</a>
         <a href="performanceadmin.php">Performance</a>
         <a href="feeadmin.php">financials</a>
         <a href="enrollstudent.php">Enroll student</a>
@@ -120,15 +140,80 @@ table{
         <a href="studentssee.php">see students</a>
         <a href="seeclasses.php">see classes</a>
         <a href="seegrades.php">Units not graded </a>
-        
+   
+   
+   
     </div>
 
     <div class="main-content">
-        <h2> Welcome <?=$_SESSION['name'];?> </h2>
+     
 
+    <form action="studentssee.php" method="post">
+    <h1>Units not graded</h1>
+    </form>
+       
+    
+    <table>
+        <tr>
+            <th>unit</th>
+            <th>teacher</th>
+        </tr>
+        <?php 
+        // $Sqle=" SELECT  gradess.unit,enrolled.unitname 
+        // FROM gradess
+        //  JOIN enrolled ON WHERE NOT enrolled.unitname=gradess.unit 
+        // ";
+         $Sqle = "SELECT * FROM classes  ORDER BY createdat ASC ";
+        $stmtz=$conns->prepare($Sqle);
+        $stmtz->execute();
+        $resultz=$stmtz->fetchAll(PDO::FETCH_OBJ);
+        $sql="SELECT * FROM gradess";
+        $stmt=$conns->prepare($sql);
+        // $stmt->execute();
+        $result=$stmt->fetchAlL(PDO::FETCH_OBJ);
+        if($resultz)
+        {
+            foreach($resultz as $row){
+                    ?>
+                    <tr>
+                        <td><?=$row->unitname;?></td>
+                        <td><?=$row->createdat;?></td>
+
+                    </tr>
+
+<?php
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        ?>
+    </table>
 
 
     </div>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

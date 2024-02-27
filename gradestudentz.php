@@ -107,6 +107,7 @@
      if($stmtz){
  
          echo "success";
+         header('location:tunits.php');
      }
  
  
